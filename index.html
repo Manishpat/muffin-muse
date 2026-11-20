@@ -15,7 +15,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Manrope:wght@400;500;600;700&family=Pinyon+Script&display=swap" rel="stylesheet">
   <link rel="preload" as="image" href="assets/img/hero.webp" fetchpriority="high">
-  <link rel="stylesheet" href="assets/css/styles.css?v=3">
+  <link rel="stylesheet" href="assets/css/styles.css?v=4">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -156,13 +156,12 @@
   <div class="wrap">
     <header class="section-head section-head--center">
       <p class="label reveal">How to order</p>
-      <h2 class="h2 reveal">From idea to <em>first slice</em> in four easy steps.</h2>
+      <h2 class="h2 reveal">From idea to <em>first slice</em> in three easy steps.</h2>
     </header>
-    <ol class="steps">
-      <li class="reveal"><span class="steps__n">01</span><h3>Tell us the occasion</h3><p>Pick the celebration, who it's for and any milestone. Takes seconds.</p></li>
-      <li class="reveal"><span class="steps__n">02</span><h3>Design your cake</h3><p>Choose size, flavour, egg or eggless, theme and colours. Upload a reference photo if you have one.</p></li>
-      <li class="reveal"><span class="steps__n">03</span><h3>Pick date &amp; delivery</h3><p>Choose your date, a time slot and home delivery or self-pickup.</p></li>
-      <li class="reveal"><span class="steps__n">04</span><h3>Diksha confirms</h3><p>We personally reach out to confirm design, price and availability. No login, no account — ever.</p></li>
+    <ol class="steps steps--three">
+      <li class="reveal"><span class="steps__n">01</span><h3>Choose your cake</h3><p>Pick the occasion, flavour and weight, and tell us when and where you need it.</p></li>
+      <li class="reveal"><span class="steps__n">02</span><h3>Share your number</h3><p>Just your name and mobile number. No login, no account — ever.</p></li>
+      <li class="reveal"><span class="steps__n">03</span><h3>Diksha confirms</h3><p>We call or WhatsApp you to finalise the design and price.</p></li>
     </ol>
     <p class="how__note reveal">Please book at least <strong data-lead-text>1 day</strong> in advance. For wedding and multi-tier cakes, a week's notice is ideal.</p>
   </div>
@@ -209,10 +208,10 @@
     <aside class="book__aside">
       <p class="label reveal">Book your cake</p>
       <h2 class="h2 reveal">Let's create something <em>beautiful.</em></h2>
-      <p class="reveal">Tell us about your celebration — it takes under two minutes. No login, no account. Diksha will personally confirm your design, price and availability.</p>
+      <p class="reveal">Tell us about your celebration — it takes under a minute. No login, no account. Diksha will personally confirm your design, price and availability.</p>
       <ul class="book__perks reveal">
         <li>Nothing is charged online — this is a booking request</li>
-        <li>Reference photos welcome</li>
+        <li>Two quick pages — done in under a minute</li>
         <li>We reply on call or WhatsApp to confirm</li>
       </ul>
       <figure class="book__img reveal"><img src="assets/img/g1-sm.webp" alt="Three celebration cakes on cake stands" loading="lazy" width="560" height="373"></figure>
@@ -220,12 +219,9 @@
 
     <div class="booking" id="booking">
       <div class="booking__progress" aria-hidden="true"><span id="progressBar"></span></div>
-      <ol class="booking__steps" id="stepNav" aria-label="Booking steps">
-        <li data-step="0" class="is-active"><span>1</span>Occasion</li>
-        <li data-step="1"><span>2</span>Cake</li>
-        <li data-step="2"><span>3</span>Delivery</li>
-        <li data-step="3"><span>4</span>Details</li>
-        <li data-step="4"><span>5</span>Review</li>
+      <ol class="booking__steps booking__steps--two" id="stepNav" aria-label="Booking steps">
+        <li data-step="0" class="is-active"><span>1</span>Your cake</li>
+        <li data-step="1"><span>2</span>Your details</li>
       </ol>
 
       <div class="inspired" id="inspired" hidden>
@@ -235,328 +231,78 @@
 
       <form id="bookingForm" novalidate>
         <input type="hidden" name="collection" id="f_collection">
-        <!-- honeypot -->
         <div class="hp" aria-hidden="true"><label>Leave this empty <input type="text" name="_honey" tabindex="-1" autocomplete="off"></label></div>
 
-        <!-- STEP 1 · OCCASION -->
+        <!-- PAGE 1 · YOUR CAKE -->
         <fieldset class="step is-active" data-step="0">
-          <legend class="step__title">What are we celebrating?</legend>
+          <legend class="step__title">Tell us about your cake</legend>
+
           <div class="field">
-            <div class="chips chips--wrap" id="occasionChips" role="radiogroup" aria-label="Occasion" data-required="occasion"></div>
+            <span class="field__label">Occasion <b>*</b></span>
+            <div class="chips chips--occ" id="occasionChips" role="radiogroup" aria-label="Occasion"></div>
             <p class="err" data-err="occasion"></p>
           </div>
-          <div class="field cond" data-show="occasion=Other">
-            <label for="f_occasion_other">Tell us the occasion <b>*</b></label>
-            <input id="f_occasion_other" name="occasion_other" type="text" maxlength="60" placeholder="e.g. Promotion party">
-            <p class="err" data-err="occasion_other"></p>
-          </div>
 
-          <!-- Birthday -->
-          <div class="cond" data-show="occasion=Birthday">
-            <div class="field">
-              <span class="field__label">Who is the cake for? <b>*</b></span>
-              <div class="chips" role="radiogroup" aria-label="Who is the cake for">
-                <label class="chip"><input type="radio" name="birthday_for" value="Baby"><span>👶 Baby</span></label>
-                <label class="chip"><input type="radio" name="birthday_for" value="Child"><span>🧒 Child</span></label>
-                <label class="chip"><input type="radio" name="birthday_for" value="Adult"><span>🥂 Adult</span></label>
-                <label class="chip"><input type="radio" name="birthday_for" value="Other"><span>✨ Other</span></label>
-              </div>
-              <p class="err" data-err="birthday_for"></p>
-            </div>
-            <div class="field cond" data-show="birthday_for=Other">
-              <label for="f_birthday_for_other">Who is it for? <b>*</b></label>
-              <input id="f_birthday_for_other" name="birthday_for_other" type="text" maxlength="60" placeholder="e.g. Our team, my grandmother, our puppy">
-              <p class="err" data-err="birthday_for_other"></p>
-            </div>
-            <div class="field cond" data-show="birthday_for=Baby|Child">
-              <span class="field__label">Which milestone? <b>*</b></span>
-              <div class="chips chips--sm" id="milestoneChips" role="radiogroup" aria-label="Milestone"></div>
-              <p class="err" data-err="milestone"></p>
-            </div>
-            <div class="field cond" data-show="milestone=Other">
-              <label for="f_milestone_other">Tell us the milestone <b>*</b></label>
-              <input id="f_milestone_other" name="milestone_other" type="text" maxlength="40" placeholder="e.g. 11 Years, 100 days">
-              <p class="err" data-err="milestone_other"></p>
-            </div>
-            <div class="field cond" data-show="birthday_for=Adult">
-              <label for="f_adult_age">Turning (optional)</label>
-              <input id="f_adult_age" name="adult_age" type="number" min="11" max="120" inputmode="numeric" placeholder="e.g. 30">
-            </div>
-          </div>
-
-          <!-- Anniversary -->
-          <div class="field cond" data-show="occasion=Wedding Anniversary">
-            <label for="f_anniv_year">Which anniversary? (optional)</label>
-            <input id="f_anniv_year" name="anniversary_year" type="number" min="1" max="80" inputmode="numeric" placeholder="e.g. 25">
-          </div>
-
-          <!-- Wedding / Engagement / Anniversary -->
-          <div class="field cond" data-show="occasion=Wedding|Engagement|Wedding Anniversary">
-            <label for="f_couple">Couple's names (optional)</label>
-            <input id="f_couple" name="couple_names" type="text" maxlength="80" placeholder="e.g. Aarav & Meera">
-          </div>
-          <div class="field cond" data-show="occasion=Wedding|Engagement">
-            <span class="field__label">How many tiers?</span>
-            <div class="chips chips--sm" role="radiogroup" aria-label="Tiers">
-              <label class="chip"><input type="radio" name="tiers" value="Single tier"><span>Single</span></label>
-              <label class="chip"><input type="radio" name="tiers" value="2 tiers"><span>2 tiers</span></label>
-              <label class="chip"><input type="radio" name="tiers" value="3 tiers"><span>3 tiers</span></label>
-              <label class="chip"><input type="radio" name="tiers" value="4+ tiers"><span>4+ tiers</span></label>
-              <label class="chip"><input type="radio" name="tiers" value="Not sure – please suggest"><span>Suggest for me</span></label>
-            </div>
-          </div>
-
-          <!-- Baby shower / welcome / naming -->
-          <div class="field cond" data-show="occasion=Baby Shower|Baby Welcome|Naming Ceremony">
-            <span class="field__label">Theme direction</span>
-            <div class="chips chips--sm" role="radiogroup" aria-label="Baby theme">
-              <label class="chip"><input type="radio" name="baby_theme" value="Baby girl"><span>Baby girl</span></label>
-              <label class="chip"><input type="radio" name="baby_theme" value="Baby boy"><span>Baby boy</span></label>
-              <label class="chip"><input type="radio" name="baby_theme" value="Gender neutral"><span>Neutral</span></label>
-              <label class="chip cond" data-show="occasion=Baby Shower"><input type="radio" name="baby_theme" value="Gender reveal"><span>Gender reveal 🎀</span></label>
-            </div>
-          </div>
-          <div class="field cond" data-show="baby_theme=Gender reveal">
-            <label for="f_reveal">Reveal colour inside (keep the secret with us!)</label>
-            <select id="f_reveal" name="reveal_colour">
-              <option value="">I'll tell Diksha privately</option>
-              <option>Pink inside</option>
-              <option>Blue inside</option>
-            </select>
-          </div>
-          <div class="field cond" data-show="occasion=Naming Ceremony|Baby Welcome">
-            <label for="f_baby_name">Baby's name to feature (optional)</label>
-            <input id="f_baby_name" name="baby_name" type="text" maxlength="40" placeholder="e.g. Anaya">
-          </div>
-
-          <div class="row2">
-            <div class="field cond" data-show="occasion=*">
-              <label for="f_celebrant">Name of the person being celebrated (optional)</label>
-              <input id="f_celebrant" name="celebrant_name" type="text" maxlength="60" placeholder="e.g. Riya">
-            </div>
-            <div class="field cond" data-show="occasion=*">
-              <label for="f_guests">Approx. number of guests (optional)</label>
-              <input id="f_guests" name="guests" type="number" min="1" max="2000" inputmode="numeric" placeholder="e.g. 20">
-              <p class="hint" id="guestHint"></p>
-            </div>
-          </div>
-        </fieldset>
-
-        <!-- STEP 2 · CAKE -->
-        <fieldset class="step" data-step="1">
-          <legend class="step__title">Design your cake</legend>
           <div class="field">
-            <span class="field__label">Cake weight <b>*</b></span>
-            <div class="chips chips--sm" role="radiogroup" aria-label="Cake weight" id="weightChips"></div>
+            <label for="f_cake_name">Name on the cake (optional)</label>
+            <input id="f_cake_name" name="cake_name" type="text" maxlength="40" placeholder="e.g. Riya">
+          </div>
+
+          <div class="field">
+            <span class="field__label">Flavour <b>*</b></span>
+            <div class="chips" id="flavourChips" role="radiogroup" aria-label="Flavour"></div>
+            <p class="err" data-err="flavour"></p>
+          </div>
+
+          <div class="field">
+            <span class="field__label">Weight <b>*</b></span>
+            <div class="chips chips--sm" id="weightChips" role="radiogroup" aria-label="Cake weight"></div>
             <p class="err" data-err="weight"></p>
           </div>
-          <div class="field cond" data-show="weight=Custom">
-            <label for="f_weight_custom">Custom weight <b>*</b></label>
-            <input id="f_weight_custom" name="weight_custom" type="text" maxlength="30" placeholder="e.g. 4 kg, or 24 cupcakes">
-            <p class="err" data-err="weight_custom"></p>
-          </div>
-
-          <div class="field">
-            <span class="field__label">Egg or eggless? <b>*</b></span>
-            <div class="chips" role="radiogroup" aria-label="Egg preference">
-              <label class="chip chip--veg"><input type="radio" name="egg" value="Eggless"><span><i class="vegdot"></i>Eggless</span></label>
-              <label class="chip chip--egg"><input type="radio" name="egg" value="With egg"><span><i class="vegdot"></i>With egg</span></label>
-            </div>
-            <p class="err" data-err="egg"></p>
-          </div>
 
           <div class="row2">
             <div class="field">
-              <label for="f_flavour">Flavour <b>*</b></label>
-              <select id="f_flavour" name="flavour"></select>
-              <p class="err" data-err="flavour"></p>
-            </div>
-            <div class="field">
-              <label for="f_design">Cake design / type <b>*</b></label>
-              <select id="f_design" name="design"></select>
-              <p class="err" data-err="design"></p>
-            </div>
-          </div>
-          <div class="field cond" data-show="flavour=Other">
-            <label for="f_flavour_other">Which flavour? <b>*</b></label>
-            <input id="f_flavour_other" name="flavour_other" type="text" maxlength="60" placeholder="e.g. Lotus Biscoff with salted caramel">
-            <p class="err" data-err="flavour_other"></p>
-          </div>
-          <p class="hint cond" data-show="design=Photo Print Cake">📸 Please upload the photo you'd like printed in "Reference photo" below.</p>
-          <div class="field cond" data-show="design=Cupcakes & Desserts">
-            <label for="f_cupcake_qty">How many pieces?</label>
-            <select id="f_cupcake_qty" name="cupcake_qty"><option value="">Select</option><option>6</option><option>12</option><option>18</option><option>24</option><option>36+</option></select>
-          </div>
-
-          <div class="row2">
-            <div class="field">
-              <label for="f_theme">Preferred theme</label>
-              <input id="f_theme" name="theme" type="text" maxlength="80" placeholder="e.g. Butterflies, Barbie, minimal floral" list="themeIdeas">
-              <datalist id="themeIdeas"><option value="Minimal & elegant"><option value="Floral"><option value="Butterflies"><option value="Princess"><option value="Superhero"><option value="Jungle / Safari"><option value="Unicorn"><option value="Space"><option value="Cartoon character"><option value="Vintage / Lambeth"><option value="Gold & luxe"></datalist>
-            </div>
-            <div class="field">
-              <label for="f_colours">Colour palette</label>
-              <input id="f_colours" name="colours" type="text" maxlength="80" placeholder="e.g. Blush pink & gold">
-              <div class="swatches" id="swatches" aria-label="Quick colour picks"></div>
-            </div>
-          </div>
-
-          <div class="field">
-            <label class="toggle"><input type="checkbox" id="f_want_msg" name="want_message" value="Yes"><span class="toggle__ui" aria-hidden="true"></span> Add a message on the cake</label>
-          </div>
-          <div class="field cond" data-show="want_message=Yes">
-            <label for="f_message">Message on cake <b>*</b></label>
-            <input id="f_message" name="cake_message" type="text" maxlength="50" placeholder="e.g. Happy 1st Birthday Kiaan">
-            <p class="hint"><span id="msgCount">0</span>/50 characters</p>
-            <p class="err" data-err="cake_message"></p>
-          </div>
-
-          <div class="field">
-            <span class="field__label">Reference cake photo (optional)</span>
-            <label class="drop" id="drop" for="f_photo">
-              <input id="f_photo" type="file" accept="image/*">
-              <span class="drop__empty"><b>Upload a photo</b> or drag it here<br><small>JPG, PNG or HEIC · shown in your summary, and after booking you can send it to Diksha in one tap</small></span>
-              <span class="drop__full" hidden><img id="photoPreview" alt="Your reference photo"><span><b id="photoName"></b><small id="photoSize"></small><button type="button" class="link-btn" id="photoRemove">Remove</button></span></span>
-            </label>
-            <p class="err" data-err="photo"></p>
-          </div>
-
-          <div class="field">
-            <span class="field__label">Little extras (optional)</span>
-            <div class="chips chips--sm">
-              <label class="chip"><input type="checkbox" name="addons" value="Candles"><span>Candles</span></label>
-              <label class="chip"><input type="checkbox" name="addons" value="Cake topper"><span>Cake topper</span></label>
-              <label class="chip"><input type="checkbox" name="addons" value="Knife & server"><span>Knife &amp; server</span></label>
-              <label class="chip"><input type="checkbox" name="addons" value="Matching cupcakes"><span>Matching cupcakes</span></label>
-              <label class="chip"><input type="checkbox" name="addons" value="Gift note card"><span>Gift note card</span></label>
-            </div>
-          </div>
-
-          <div class="row2">
-            <div class="field">
-              <label for="f_budget">Approximate budget (optional)</label>
-              <select id="f_budget" name="budget"><option value="">Prefer not to say</option><option>Under ₹1,000</option><option>₹1,000 – ₹2,000</option><option>₹2,000 – ₹3,500</option><option>₹3,500 – ₹5,000</option><option>₹5,000 – ₹10,000</option><option>Above ₹10,000</option></select>
-            </div>
-            <div class="field">
-              <label for="f_notes">Additional instructions</label>
-              <textarea id="f_notes" name="instructions" rows="2" maxlength="600" placeholder="Allergies, less sweet, a surprise, anything else…"></textarea>
-            </div>
-          </div>
-        </fieldset>
-
-        <!-- STEP 3 · DELIVERY -->
-        <fieldset class="step" data-step="2">
-          <legend class="step__title">When &amp; where?</legend>
-          <div class="row2">
-            <div class="field">
-              <label for="f_date">Date required <b>*</b></label>
+              <label for="f_date">Date needed <b>*</b></label>
               <input id="f_date" name="date" type="date" required>
               <p class="hint" id="dateHint"></p>
               <p class="err" data-err="date"></p>
             </div>
             <div class="field">
-              <span class="field__label">Delivery or pickup? <b>*</b></span>
-              <div class="chips" role="radiogroup" aria-label="Delivery or pickup">
-                <label class="chip"><input type="radio" name="method" value="Home delivery"><span>🚚 Delivery</span></label>
-                <label class="chip"><input type="radio" name="method" value="Self-pickup"><span>🛍️ Self-pickup</span></label>
-              </div>
-              <p class="err" data-err="method"></p>
+              <label for="f_time">Time needed <b>*</b></label>
+              <input id="f_time" name="time" type="time" required>
+              <p class="err" data-err="time"></p>
             </div>
-          </div>
-          <div class="field">
-            <span class="field__label">Preferred time <b>*</b></span>
-            <div class="chips chips--sm" role="radiogroup" aria-label="Preferred time">
-              <label class="chip"><input type="radio" name="time_slot" value="Morning (10 am – 12 pm)"><span>Morning · 10–12</span></label>
-              <label class="chip"><input type="radio" name="time_slot" value="Afternoon (12 – 4 pm)"><span>Afternoon · 12–4</span></label>
-              <label class="chip"><input type="radio" name="time_slot" value="Evening (4 – 8 pm)"><span>Evening · 4–8</span></label>
-              <label class="chip"><input type="radio" name="time_slot" value="Specific time"><span>Specific time</span></label>
-            </div>
-            <p class="err" data-err="time_slot"></p>
-          </div>
-          <div class="field cond" data-show="time_slot=Specific time">
-            <label for="f_time">Exact time <b>*</b></label>
-            <input id="f_time" name="specific_time" type="time">
-            <p class="err" data-err="specific_time"></p>
           </div>
 
-          <div class="cond" data-show="method=Home delivery">
-            <div class="field">
-              <label for="f_address">Complete delivery address <b>*</b></label>
-              <textarea id="f_address" name="address" rows="3" maxlength="400" autocomplete="street-address" placeholder="House / flat no., building, street, area, city"></textarea>
-              <p class="err" data-err="address"></p>
-            </div>
-            <div class="row2">
-              <div class="field">
-                <label for="f_pin">Pincode <b>*</b></label>
-                <input id="f_pin" name="pincode" type="text" inputmode="numeric" maxlength="6" autocomplete="postal-code" placeholder="6-digit pincode">
-                <p class="err" data-err="pincode"></p>
-              </div>
-              <div class="field">
-                <label for="f_landmark">Landmark (optional)</label>
-                <input id="f_landmark" name="landmark" type="text" maxlength="80" placeholder="e.g. Near City Park">
-              </div>
-            </div>
-            <p class="hint">Delivery charges, if any, depend on distance and will be confirmed with your quote.</p>
-          </div>
-          <div class="cond" data-show="method=Self-pickup">
-            <p class="note">📍 Pickup location will be shared when Diksha confirms your order.</p>
-            <div class="field">
-              <label for="f_area">Your area / locality (optional)</label>
-              <input id="f_area" name="customer_area" type="text" maxlength="80" placeholder="Helps us plan your pickup">
-            </div>
-          </div>
-          <div class="field cond" data-show="method=Home delivery">
-            <label class="toggle"><input type="checkbox" name="surprise" value="Yes"><span class="toggle__ui" aria-hidden="true"></span> It's a surprise — please don't call the recipient</label>
+          <div class="field">
+            <label for="f_address">Delivery address <b>*</b></label>
+            <textarea id="f_address" name="address" rows="3" maxlength="400" autocomplete="street-address" placeholder="House / flat no., street, area, city, pincode"></textarea>
+            <p class="err" data-err="address"></p>
           </div>
         </fieldset>
 
-        <!-- STEP 4 · DETAILS -->
-        <fieldset class="step" data-step="3">
+        <!-- PAGE 2 · CONTACT -->
+        <fieldset class="step" data-step="1">
           <legend class="step__title">How can we reach you?</legend>
           <div class="field">
-            <label for="f_name">Full name <b>*</b></label>
+            <label for="f_name">Your name <b>*</b></label>
             <input id="f_name" name="name" type="text" maxlength="80" autocomplete="name" placeholder="Your full name">
             <p class="err" data-err="name"></p>
           </div>
-          <div class="row2">
-            <div class="field">
-              <label for="f_phone">Mobile number <b>*</b></label>
-              <div class="phone"><span>+91</span><input id="f_phone" name="phone" type="tel" inputmode="numeric" maxlength="14" autocomplete="tel-national" placeholder="10-digit mobile"></div>
-              <p class="err" data-err="phone"></p>
-            </div>
-            <div class="field">
-              <label for="f_email">Email (optional)</label>
-              <input id="f_email" name="email" type="email" maxlength="120" autocomplete="email" placeholder="you@example.com">
-              <p class="err" data-err="email"></p>
-            </div>
-          </div>
           <div class="field">
-            <span class="field__label">Best way to confirm with you</span>
-            <div class="chips chips--sm" role="radiogroup" aria-label="Contact preference">
-              <label class="chip"><input type="radio" name="contact_pref" value="WhatsApp" checked><span>WhatsApp</span></label>
-              <label class="chip"><input type="radio" name="contact_pref" value="Phone call"><span>Phone call</span></label>
-              <label class="chip"><input type="radio" name="contact_pref" value="Email"><span>Email</span></label>
-            </div>
-            <p class="err" data-err="contact_pref"></p>
+            <label for="f_phone">Mobile number <b>*</b></label>
+            <div class="phone"><span>+91</span><input id="f_phone" name="phone" type="tel" inputmode="numeric" maxlength="14" autocomplete="tel-national" placeholder="10-digit mobile"></div>
+            <p class="err" data-err="phone"></p>
           </div>
-          <div class="field">
-            <label for="f_source">How did you find us? (optional)</label>
-            <select id="f_source" name="source"><option value="">Select</option><option>Instagram</option><option>Friend or family</option><option>Tasted at an event</option><option>Google</option><option>Ordered before</option><option>Other</option></select>
-          </div>
-        </fieldset>
-
-        <!-- STEP 5 · REVIEW -->
-        <fieldset class="step" data-step="4">
-          <legend class="step__title">Review your booking</legend>
           <div class="summary" id="summary"></div>
-          <p class="fine">By submitting, you're sending a booking request — not a payment. Diksha will contact you to confirm the final design, price and availability.</p>
+          <p class="fine">This is a booking request, not a payment. Diksha will call or WhatsApp you to confirm the design and price.</p>
         </fieldset>
 
         <div class="form-status" id="formStatus" role="alert" aria-live="assertive" hidden></div>
 
         <div class="booking__nav">
           <button type="button" class="btn btn--ghost" id="prevBtn" hidden>← Back</button>
-          <span class="booking__count" id="stepCount">Step 1 of 5</span>
+          <span class="booking__count" id="stepCount">Page 1 of 2</span>
           <button type="button" class="btn btn--dark" id="nextBtn">Continue →</button>
           <button type="submit" class="btn btn--rose" id="submitBtn" hidden><span class="btn__label">Send booking request</span><span class="spinner" aria-hidden="true"></span></button>
         </div>
@@ -571,7 +317,6 @@
         <h3 class="h3">Thank you, <em id="successName"></em>!</h3>
         <p>Your request has reached Diksha. She'll contact you on <strong id="successPhone"></strong> to confirm the design, price and availability.</p>
         <p class="success__ref">Reference: <strong id="successRef"></strong></p>
-        <p class="hint" id="successPhotoNote" hidden></p>
         <div class="success__actions">
           <a class="btn btn--dark" data-ig-link href="#" target="_blank" rel="noopener"><span>Follow @<span data-ig-handle></span></span></a>
           <button type="button" class="btn btn--ghost" id="newBooking">Book another cake</button>
@@ -650,11 +395,9 @@
   <a href="#book" class="btn btn--light btn--sm lightbox__cta" id="lbCta">Book a cake like this</a>
 </dialog>
 
-<!-- Hidden transport for bookings with a photo attachment -->
-<iframe name="mm_upload_frame" id="mmUploadFrame" title="Upload transport" class="hp" tabindex="-1"></iframe>
 
-<script src="assets/js/config.js?v=3"></script>
-<script src="assets/js/app.js?v=3" defer></script>
-<script src="assets/js/booking.js?v=3" defer></script>
+<script src="assets/js/config.js?v=4"></script>
+<script src="assets/js/app.js?v=4" defer></script>
+<script src="assets/js/booking.js?v=4" defer></script>
 </body>
 </html>

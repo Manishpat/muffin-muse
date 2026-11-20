@@ -26,12 +26,12 @@
     { key: "wedding", name: "Wedding Cakes", desc: "Tiered, timeless and finished by hand for your big day.", size: "tall", occasion: "Wedding" },
     { key: "anniversary", name: "Anniversary Cakes", desc: "Elegant cakes to toast every year together.", occasion: "Wedding Anniversary" },
     { key: "babyshower", name: "Baby Shower Cakes", desc: "Soft pastels and sweet surprises, gender reveals included.", occasion: "Baby Shower" },
-    { key: "kids", name: "Kids' Theme Cakes", desc: "Cartoons, unicorns, superheroes — their favourite world in cake.", occasion: "Birthday", design: "Fondant Theme Cake" },
-    { key: "bento", name: "Bento Cakes", desc: "Mini lunchbox cakes made for little moments and big smiles.", design: "Bento Cake", weight: "250 g" },
-    { key: "chocolate", name: "Chocolate Cakes", desc: "Ganache drips, truffle layers and deep, dark indulgence.", size: "tall", flavour: "Chocolate Truffle" },
-    { key: "floral", name: "Floral Cakes", desc: "Hand-piped blooms in buttercream — a garden on every tier.", size: "wide", design: "Floral Buttercream" },
-    { key: "designer", name: "Designer Cakes", desc: "Statement drips, macarons and sculpted details made to impress.", design: "Designer / Custom" },
-    { key: "cupcakes", name: "Cupcakes & Desserts", desc: "Swirled cupcakes, jars and dessert boxes for sharing.", design: "Cupcakes & Desserts" }
+    { key: "kids", name: "Kids' Theme Cakes", desc: "Cartoons, unicorns, superheroes — their favourite world in cake.", occasion: "Birthday" },
+    { key: "bento", name: "Bento Cakes", desc: "Mini lunchbox cakes made for little moments and big smiles." },
+    { key: "chocolate", name: "Chocolate Cakes", desc: "Ganache drips, truffle layers and deep, dark indulgence.", size: "tall", flavour: "Chocolate" },
+    { key: "floral", name: "Floral Cakes", desc: "Hand-piped blooms in buttercream — a garden on every tier.", size: "wide" },
+    { key: "designer", name: "Designer Cakes", desc: "Statement drips, macarons and sculpted details made to impress." },
+    { key: "cupcakes", name: "Cupcakes & Desserts", desc: "Swirled cupcakes, jars and dessert boxes for sharing." }
   ];
   var GALLERY = [
     ["g1", "A trio of celebration cakes", 900, 1350], ["g7", "Rainbow sprinkle layer cake", 900, 821],

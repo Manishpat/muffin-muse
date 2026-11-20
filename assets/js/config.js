@@ -22,13 +22,6 @@ window.MM_CONFIG = {
      the plain address so the email is not visible in the page source. */
   formEndpointId: "manish244504@gmail.com",
 
-  /* Attach the reference photo to the booking email.
-     Tested Nov 2026: FormSubmit's free service answers "Access Denied" to
-     uploads, so this is off. Bookings still arrive; customers are then
-     offered a one-tap way to send the photo on Instagram/WhatsApp.
-     Turn on only after confirming uploads work for your form. */
-  photoAttachments: false,
-
   /* Minimum days of notice for an order (0 = same day, 1 = from tomorrow). */
   minLeadDays: 1,
 };

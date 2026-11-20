@@ -228,6 +228,11 @@ button, input, select, textarea { font: inherit; color: inherit; }
 .steps p { margin: 0; color: var(--cocoa); font-size: .93rem; }
 .how__note { text-align: center; margin: 56px auto 0; max-width: 640px; padding: 16px 24px; border-radius: 999px; background: rgba(255,255,255,.6); font-size: .93rem; }
 
+.steps--three { grid-template-columns: repeat(3, 1fr); }
+.steps--three::before { left: 18%; right: 18%; }
+.booking__steps--two { justify-content: flex-start; gap: 28px; }
+.booking__steps--two li { flex: 0 0 auto; }
+
 /* ── Why ──────────────────────────────────────────── */
 .why { background: var(--choc); color: var(--ivory); overflow: hidden; }
 .why::before { content: ""; position: absolute; width: 640px; height: 640px; right: -200px; top: -240px; border-radius: 50%; background: radial-gradient(circle, rgba(201,112,127,.26), transparent 70%); }
@@ -462,7 +467,7 @@ input:focus, select:focus, textarea:focus { outline: none; border-color: var(--r
   .why__intro, .book__aside { position: static; }
   .bento { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 230px; }
   .card--tall { grid-row: span 1; }
-  .steps { grid-template-columns: 1fr 1fr; gap: 40px 0; }
+  .steps, .steps--three { grid-template-columns: 1fr; gap: 40px 0; }
   .steps::before { display: none; }
   .book__img { display: none; }
   .insta__grid { grid-template-columns: repeat(3, 1fr); }
@@ -489,7 +494,8 @@ input:focus, select:focus, textarea:focus { outline: none; border-color: var(--r
   .card__cta { padding: 8px 12px; font-size: .74rem; }
   .card__n { top: 12px; left: 12px; font-size: .85rem; padding: 5px 9px; }
   .masonry, .masonry__col { gap: 12px; }
-  .steps { grid-template-columns: 1fr; }
+  .steps, .steps--three { grid-template-columns: 1fr; }
+  .booking__steps--two li { font-size: .78rem; gap: 8px; }
   .how__note { border-radius: 18px; }
   .row2 { grid-template-columns: 1fr; }
   .booking { border-radius: 24px; padding: 22px 18px; margin-inline: -4px; }

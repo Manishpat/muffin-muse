@@ -10,7 +10,7 @@ thanks.html           Page FormSubmit redirects to after a booking with a photo 
 assets/css/styles.css Design system and layout
 assets/js/config.js   ← The only file you normally edit (Instagram, WhatsApp, booking email, lead time)
 assets/js/app.js      Navigation, collection cards, gallery and lightbox, testimonials, Instagram grid
-assets/js/booking.js  Booking form: steps, conditional questions, validation, summary, email sending
+assets/js/booking.js  Two-page booking form: validation, summary, email sending
 assets/img/           Optimised WebP photos (large + `-sm` mobile versions)
 ```
 
@@ -18,9 +18,9 @@ assets/img/           Optimised WebP photos (large + `-sm` mobile versions)
 
 Each booking is emailed to the address in `assets/js/config.js` (`formEndpointId`) through [FormSubmit](https://formsubmit.co). It's free and needs no backend or login.
 
+* The form has two pages. **Page 1:** occasion, name on cake, flavour (Chocolate, Vanilla, Butterscotch, Strawberry), weight, date and time needed, delivery address. **Page 2:** customer name and mobile number, plus a short summary to check before sending.
 * Every booking posts to FormSubmit's AJAX endpoint. Success is shown only when FormSubmit replies `success: true`. Otherwise the customer sees "not sent", with options to retry, copy their details or DM on Instagram.
-* **Reference photos:** in testing (Nov 2026), FormSubmit's free service answered "Access Denied" to file uploads, so `photoAttachments` is `false`. The booking still arrives, and the email notes that the customer has a photo. After booking, the customer gets a one-tap **Share photo with Diksha** button (the phone share sheet, for Instagram or WhatsApp) plus Instagram/WhatsApp links, all quoting the booking reference.
-* `photoAttachments: true` switches to an attachment upload in a hidden iframe. FormSubmit redirects to `thanks.html` only after it accepts the email, so a refused upload is never shown as a success. Turn it on only after you've confirmed FormSubmit accepts attachments for your form, for example after switching to the alias.
+* To change the flavours, weights or occasions, edit the `FLAVOURS`, `WEIGHTS` or `OCCASIONS` lists at the top of `assets/js/booking.js`.
 
 ### One-time setup
 
