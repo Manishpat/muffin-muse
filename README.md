@@ -1,4 +1,4 @@
-# Muffin Muse – By Diksha
+# Muffin Muse – Cakes by Diksha
 
 Website for **Muffin Muse**, handcrafted celebration cakes by Diksha. It's a static site (HTML, CSS and plain JavaScript) with no build step, hosted free on GitHub Pages.
 

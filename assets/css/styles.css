@@ -108,7 +108,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
 .logo { display: inline-flex; align-items: center; gap: 12px; text-decoration: none; }
 .logo__mark { width: 40px; height: 40px; color: var(--rose-deep); }
 .logo__text { font: 600 1.55rem/1 var(--serif); letter-spacing: .01em; display: flex; flex-direction: column; }
-.logo__text em { font: 400 1.05rem/1 var(--script); color: var(--rose-deep); margin: 2px 0 0 18px; font-style: normal; }
+.logo__text em { font: 400 1.05rem/1 var(--script); color: var(--rose-deep); margin: 2px 0 0 10px; white-space: nowrap; font-style: normal; }
 .logo--light .logo__text { color: var(--ivory); }
 .logo--light .logo__text em { color: var(--pink); }
 .nav__links { display: flex; gap: 30px; }
