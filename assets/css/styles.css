@@ -380,6 +380,8 @@ input:focus, select:focus, textarea:focus { outline: none; border-color: var(--r
 .success .label { justify-content: center; }
 .success p { max-width: 46ch; margin-inline: auto; }
 .success__ref { background: var(--cream); display: inline-block; padding: 10px 18px; border-radius: 999px; font-size: .92rem; }
+#successPhotoNote { background: var(--blush); color: var(--choc); border-radius: 16px; padding: 14px 16px; margin: 16px auto 0; font-size: .92rem; }
+.success__photo-actions { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-top: 10px; }
 .success__actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-top: 26px; }
 
 /* ── Instagram ────────────────────────────────────── */

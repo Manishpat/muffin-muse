@@ -15,7 +15,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Manrope:wght@400;500;600;700&family=Pinyon+Script&display=swap" rel="stylesheet">
   <link rel="preload" as="image" href="assets/img/hero.webp" fetchpriority="high">
-  <link rel="stylesheet" href="assets/css/styles.css?v=2">
+  <link rel="stylesheet" href="assets/css/styles.css?v=3">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -415,7 +415,7 @@
             <span class="field__label">Reference cake photo (optional)</span>
             <label class="drop" id="drop" for="f_photo">
               <input id="f_photo" type="file" accept="image/*">
-              <span class="drop__empty"><b>Upload a photo</b> or drag it here<br><small>JPG, PNG or HEIC from your gallery · we'll optimise it automatically</small></span>
+              <span class="drop__empty"><b>Upload a photo</b> or drag it here<br><small>JPG, PNG or HEIC · shown in your summary, and after booking you can send it to Diksha in one tap</small></span>
               <span class="drop__full" hidden><img id="photoPreview" alt="Your reference photo"><span><b id="photoName"></b><small id="photoSize"></small><button type="button" class="link-btn" id="photoRemove">Remove</button></span></span>
             </label>
             <p class="err" data-err="photo"></p>
@@ -573,7 +573,7 @@
         <p class="success__ref">Reference: <strong id="successRef"></strong></p>
         <p class="hint" id="successPhotoNote" hidden></p>
         <div class="success__actions">
-          <a class="btn btn--dark" data-ig-link href="#" target="_blank" rel="noopener">Follow @<span data-ig-handle></span></a>
+          <a class="btn btn--dark" data-ig-link href="#" target="_blank" rel="noopener"><span>Follow @<span data-ig-handle></span></span></a>
           <button type="button" class="btn btn--ghost" id="newBooking">Book another cake</button>
         </div>
       </div>
@@ -653,8 +653,8 @@
 <!-- Hidden transport for bookings with a photo attachment -->
 <iframe name="mm_upload_frame" id="mmUploadFrame" title="Upload transport" class="hp" tabindex="-1"></iframe>
 
-<script src="assets/js/config.js?v=2"></script>
-<script src="assets/js/app.js?v=2" defer></script>
-<script src="assets/js/booking.js?v=2" defer></script>
+<script src="assets/js/config.js?v=3"></script>
+<script src="assets/js/app.js?v=3" defer></script>
+<script src="assets/js/booking.js?v=3" defer></script>
 </body>
 </html>

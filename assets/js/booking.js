@@ -487,9 +487,33 @@
     $("#successName").textContent = (data.name || "").split(" ")[0] || "lovely";
     $("#successPhone").textContent = data.phone || "your number";
     $("#successRef").textContent = ref;
-    var pn = $("#successPhotoNote");
+    var pn = $("#successPhotoNote"), hasWa = String(C.whatsappNumber || "").replace(/\D/g, "").length >= 10;
     pn.hidden = !(photoFile && !withPhoto);
-    pn.textContent = "Your reference photo wasn't attached — please share it with us on Instagram" + (String(C.whatsappNumber || "").replace(/\D/g, "").length >= 10 ? " or WhatsApp" : "") + " quoting " + ref + ".";
+    pn.innerHTML = "";
+    if (!pn.hidden) {
+      var txt = document.createElement("span");
+      txt.textContent = "📸 One last step: send your reference photo to Diksha on Instagram" + (hasWa ? " or WhatsApp" : "") + ", quoting " + ref + ".";
+      pn.appendChild(txt);
+      var row = document.createElement("span"); row.className = "success__photo-actions";
+      var shareFile = photoFile, canShare = false;
+      try { canShare = !!(navigator.canShare && navigator.canShare({ files: [shareFile] })); } catch (e) { canShare = false; }
+      if (canShare) {
+        var sb = document.createElement("button"); sb.type = "button"; sb.className = "btn btn--rose btn--sm"; sb.textContent = "Share photo with Diksha";
+        sb.onclick = function () {
+          navigator.share({ files: [shareFile], text: "Reference photo for my Muffin Muse booking " + ref }).catch(function () {});
+        };
+        row.appendChild(sb);
+      }
+      var ig = document.createElement("a"); ig.className = "btn btn--ghost btn--sm"; ig.target = "_blank"; ig.rel = "noopener";
+      ig.href = C.instagramUrl || "#"; ig.textContent = "Open Instagram";
+      row.appendChild(ig);
+      if (hasWa) {
+        var w = document.createElement("a"); w.className = "btn btn--ghost btn--sm"; w.target = "_blank"; w.rel = "noopener";
+        w.href = "https://wa.me/" + String(C.whatsappNumber).replace(/\D/g, "") + "?text=" + encodeURIComponent("Hi Diksha! Sharing the reference photo for my booking " + ref);
+        w.textContent = "WhatsApp"; row.appendChild(w);
+      }
+      pn.appendChild(row);
+    }
     form.hidden = true; $("#stepNav").hidden = true; $("#inspired").hidden = true;
     $(".booking__progress").hidden = true;
     var s = $("#success"); s.hidden = false; s.focus();
@@ -506,7 +530,7 @@
     if (navigator.onLine === false) { showError("You appear to be offline.", collect(), "", false); return; }
     hideStatus();
     var ref = lastRef || (lastRef = makeRef());
-    var withPhoto = !!photoFile && !skipPhoto;
+    var withPhoto = !!photoFile && !skipPhoto && C.photoAttachments === true;
     var p = buildPayload(ref, withPhoto);
     setLoading(true);
     (withPhoto ? sendWithPhoto(p.fields, ref) : sendJson(p.fields))

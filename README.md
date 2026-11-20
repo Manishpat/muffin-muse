@@ -18,8 +18,9 @@ assets/img/           Optimised WebP photos (large + `-sm` mobile versions)
 
 Each booking is emailed to the address in `assets/js/config.js` (`formEndpointId`) through [FormSubmit](https://formsubmit.co). It's free and needs no backend or login.
 
-* **Without a photo:** the form posts to FormSubmit's AJAX endpoint. Success is shown only when FormSubmit replies `success: true`.
-* **With a reference photo:** the form sends a multipart post with the photo attached. FormSubmit redirects to `thanks.html` only after it accepts the booking, and that page tells the booking form it worked. Anything else counts as a failure, and the customer can retry, send without the photo, copy their details or DM on Instagram.
+* Every booking posts to FormSubmit's AJAX endpoint. Success is shown only when FormSubmit replies `success: true`. Otherwise the customer sees "not sent", with options to retry, copy their details or DM on Instagram.
+* **Reference photos:** in testing (Nov 2026), FormSubmit's free service answered "Access Denied" to file uploads, so `photoAttachments` is `false`. The booking still arrives, and the email notes that the customer has a photo. After booking, the customer gets a one-tap **Share photo with Diksha** button (the phone share sheet, for Instagram or WhatsApp) plus Instagram/WhatsApp links, all quoting the booking reference.
+* `photoAttachments: true` switches to an attachment upload in a hidden iframe. FormSubmit redirects to `thanks.html` only after it accepts the email, so a refused upload is never shown as a success. Turn it on only after you've confirmed FormSubmit accepts attachments for your form, for example after switching to the alias.
 
 ### One-time setup
 
