@@ -34,12 +34,12 @@
     { key: "cupcakes", name: "Cupcakes & Desserts", desc: "Swirled cupcakes, jars and dessert boxes for sharing.", design: "Cupcakes & Desserts" }
   ];
   var GALLERY = [
-    ["g1", "A trio of celebration cakes", 900, 600], ["g7", "Rainbow sprinkle layer cake", 900, 1124],
-    ["g2", "Black forest naked cake", 900, 1350], ["g10", "Pink frosted cupcakes", 900, 600],
-    ["g4", "Ivory cake with chocolate drip", 900, 1125], ["g9", "Orange glaze entremet", 900, 1350],
-    ["g5", "Blueberry naked cake", 900, 600], ["g6", "Raspberry layer slice", 900, 1125],
-    ["g3", "Cherry-topped chocolate cake", 900, 1350], ["g11", "Strawberry dessert jars", 900, 600],
-    ["g8", "Chocolate mousse cake", 900, 1200], ["g12", "Cherry vanilla cupcake", 900, 600]
+    ["g1", "A trio of celebration cakes", 900, 1350], ["g7", "Rainbow sprinkle layer cake", 900, 821],
+    ["g6", "Raspberry layer slice", 900, 1125], ["g8", "Chocolate mousse cake", 900, 1354],
+    ["g2", "Black forest naked cake", 900, 1039], ["g10", "Pink frosted cupcakes", 900, 1350],
+    ["g4", "Ivory cake with chocolate drip", 900, 696], ["g3", "Cherry-topped chocolate cake", 900, 722],
+    ["g9", "Orange glaze entremet", 900, 526], ["g11", "Strawberry dessert jars", 900, 1350],
+    ["g5", "Blueberry naked cake", 900, 1350], ["g12", "Cherry vanilla cupcake", 900, 1354]
   ];
   /* Sample testimonials — replace with real customer words in this list. */
   var QUOTES = [
@@ -69,11 +69,28 @@
   });
 
   /* ── Gallery ── */
-  var masonry = $("#masonry");
-  masonry.innerHTML = GALLERY.map(function (g, i) {
-    return '<button type="button" class="reveal" data-i="' + i + '" data-caption="' + g[1] + '" aria-label="View larger: ' + g[1] + '">' +
-      '<img src="assets/img/' + g[0] + '-sm.webp" alt="' + g[1] + '" loading="lazy" decoding="async" width="560" height="' + Math.round(560 * g[3] / g[2]) + '"></button>';
-  }).join("");
+  var masonry = $("#masonry"), masonryCols = 0;
+  var tiles = GALLERY.map(function (g, i) {
+    var b = document.createElement("button");
+    b.type = "button"; b.dataset.i = i; b.dataset.caption = g[1]; b.setAttribute("aria-label", "View larger: " + g[1]);
+    b.innerHTML = '<img src="assets/img/' + g[0] + '-sm.webp" alt="' + g[1] + '" loading="lazy" decoding="async" width="560" height="' + Math.round(560 * g[3] / g[2]) + '">';
+    return b;
+  });
+  // Balanced masonry: each photo goes into the currently shortest column (by real aspect ratio).
+  function layoutMasonry() {
+    var w = window.innerWidth, n = w > 1080 ? 4 : w > 640 ? 3 : 2;
+    if (n === masonryCols) return;
+    masonryCols = n;
+    var cols = [], heights = [];
+    for (var c = 0; c < n; c++) { var d = document.createElement("div"); d.className = "masonry__col"; cols.push(d); heights.push(0); }
+    tiles.forEach(function (t, i) {
+      var k = heights.indexOf(Math.min.apply(null, heights));
+      cols[k].appendChild(t); heights[k] += GALLERY[i][3] / GALLERY[i][2] + 0.05;
+    });
+    masonry.innerHTML = ""; cols.forEach(function (d) { masonry.appendChild(d); });
+  }
+  layoutMasonry();
+  var rT; window.addEventListener("resize", function () { clearTimeout(rT); rT = setTimeout(layoutMasonry, 150); });
 
   /* ── Lightbox ── */
   var lb = $("#lightbox"), lbImg = $("#lbImg"), lbCap = $("#lbCap"), lbIdx = 0;
