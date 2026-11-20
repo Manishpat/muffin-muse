@@ -27,7 +27,7 @@
   /* email field labels — this order is the order of the email */
   var LABELS = {
     name: "Customer name", phone: "Mobile number",
-    occasion: "Occasion", cake_name: "Name on cake", flavour: "Flavour", weight: "Weight",
+    occasion: "Occasion", milestone: "Which birthday / anniversary", cake_name: "Name on cake", flavour: "Flavour", weight: "Weight",
     date: "Date needed", time: "Time needed", address: "Delivery address", collection: "Inspired by"
   };
 
@@ -45,6 +45,17 @@
     var els = controls(name); if (!els.length) return "";
     if (els[0].type === "radio") { var c = els.filter(function (e) { return e.checked; })[0]; return c ? c.value : ""; }
     return (els[0].value || "").trim();
+  }
+  function ordinal(n) { n = parseInt(n, 10); var s = ["th", "st", "nd", "rd"], v = n % 100; return n + (s[(v - 20) % 10] || s[v] || s[0]); }
+  var MILESTONE_FOR = { "Birthday": "birthday", "Wedding Anniversary": "anniversary" };
+  function updateMilestone() {
+    var kind = MILESTONE_FOR[val("occasion")], fld = $("#milestoneField");
+    fld.hidden = !kind;
+    if (!kind) { showErr("milestone", ""); return; }
+    $("#milestoneLabel").textContent = "Which " + kind + " is this?";
+    var n = parseInt(val("milestone"), 10);
+    $("#milestoneSuffix").textContent = (n > 0 ? ordinal(n).replace(/^\d+/, "") : "") + " " + kind;
+    $("#f_milestone").placeholder = kind === "birthday" ? "e.g. 1" : "e.g. 25";
   }
   function pad(n) { return String(n).padStart(2, "0"); }
   function ymd(d) { return d.getFullYear() + "-" + pad(d.getMonth() + 1) + "-" + pad(d.getDate()); }
@@ -72,6 +83,7 @@
   /* ─────────── Validation ─────────── */
   var RULES = [
     [0, "occasion", function (v) { return !!v; }, "Please choose the occasion."],
+    [0, "milestone", function (v) { return !MILESTONE_FOR[val("occasion")] || (+v >= 1 && +v <= 120 && Math.floor(+v) === +v); }, function () { return "Please tell us which " + MILESTONE_FOR[val("occasion")] + " it is (a number, e.g. 1 or 25)."; }],
     [0, "flavour", function (v) { return !!v; }, "Please choose a flavour."],
     [0, "weight", function (v) { return !!v; }, "Please choose the weight."],
     [0, "date", function (v) { return !!v && v >= dateInp.min && v <= dateInp.max; }, function (v) { return !v ? "Please choose the date you need the cake." : v < dateInp.min ? "Please choose " + prettyDate(dateInp.min) + " or later — we bake every cake fresh." : "Please choose a date within the next year."; }],
@@ -102,7 +114,8 @@
     return !first;
   }
   form.addEventListener("input", function (e) { if (e.target.name) showErr(e.target.name, ""); });
-  form.addEventListener("change", function (e) { if (e.target.name) showErr(e.target.name, ""); updateHints(); save(); });
+  form.addEventListener("change", function (e) { if (e.target.name) showErr(e.target.name, ""); updateHints(); updateMilestone(); save(); });
+  form.addEventListener("input", function (e) { if (e.target.name === "milestone") updateMilestone(); });
 
   /* ─────────── Pages ─────────── */
   var steps = $$(".step", form), cur = 0;
@@ -143,6 +156,7 @@
     var d = {};
     Object.keys(LABELS).forEach(function (k) {
       var v = val(k); if (!v) return;
+      if (k === "milestone") { var kind = MILESTONE_FOR[val("occasion")]; if (!kind) return; v = ordinal(v) + " " + kind; }
       if (k === "date") v = prettyDate(v);
       if (k === "time") v = prettyTime(v);
       if (k === "phone") v = "+91 " + normPhone(v);
@@ -151,7 +165,7 @@
     return d;
   }
   function renderSummary() {
-    var d = collect(), keys = ["occasion", "cake_name", "flavour", "weight", "date", "time", "address"];
+    var d = collect(), keys = ["occasion", "milestone", "cake_name", "flavour", "weight", "date", "time", "address"];
     $("#summary").innerHTML = '<section class="sum-block"><header><h4>Your cake</h4><button type="button" class="link-btn" data-edit="0">Edit</button></header><dl>' +
       keys.filter(function (k) { return d[k]; }).map(function (k) { return "<dt>" + esc(LABELS[k]) + "</dt><dd>" + esc(d[k]) + "</dd>"; }).join("") + "</dl></section>";
   }
@@ -201,7 +215,7 @@
     showInspired(c.name);
     if (c.occasion) setRadio("occasion", c.occasion);
     if (c.flavour) setRadio("flavour", c.flavour);
-    save(); goTo(0, false);
+    updateMilestone(); save(); goTo(0, false);
   });
 
   /* ─────────── Submission (FormSubmit AJAX — JSON confirms delivery) ─────────── */
@@ -294,12 +308,13 @@
     form.hidden = false; $("#stepNav").hidden = false; $(".booking__progress").hidden = false; $("#success").hidden = true;
     $$(".is-invalid", form).forEach(function (el) { el.classList.remove("is-invalid"); });
     $$(".err", form).forEach(function (el) { el.textContent = ""; });
-    updateHints(); goTo(0, false);
+    updateHints(); updateMilestone(); goTo(0, false);
   }
   $("#newBooking").addEventListener("click", function () { resetAll(); goTo(0, true); });
 
   /* ─────────── Init ─────────── */
   restore();
   updateHints();
+  updateMilestone();
   goTo(0, false);
 })();

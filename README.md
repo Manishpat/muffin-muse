@@ -18,7 +18,7 @@ assets/img/           Optimised WebP photos (large + `-sm` mobile versions)
 
 Each booking is emailed to the address in `assets/js/config.js` (`formEndpointId`) through [FormSubmit](https://formsubmit.co). It's free and needs no backend or login.
 
-* The form has two pages. **Page 1:** occasion, name on cake, flavour (Chocolate, Vanilla, Butterscotch, Strawberry), weight, date and time needed, delivery address. **Page 2:** customer name and mobile number, plus a short summary to check before sending.
+* The form has two pages. **Page 1:** occasion, which birthday or anniversary (shown only for those two), name on cake, flavour (Chocolate, Vanilla, Butterscotch, Strawberry), weight, date and time needed, delivery address. **Page 2:** customer name and mobile number, plus a short summary to check before sending.
 * Every booking posts to FormSubmit's AJAX endpoint. Success is shown only when FormSubmit replies `success: true`. Otherwise the customer sees "not sent", with options to retry, copy their details or DM on Instagram.
 * To change the flavours, weights or occasions, edit the `FLAVOURS`, `WEIGHTS` or `OCCASIONS` lists at the top of `assets/js/booking.js`.
 
